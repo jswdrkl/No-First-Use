@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400&family=Ubuntu:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -15,15 +15,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"IBM Plex Sans"', '"IBM Plex Sans Devanagari"', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              lightBg: '#f8fafc',
-              darkBg: '#0b1120',
-              cardLight: '#ffffff',
-              cardDark: '#131d31',
-            }
+            custom: ["'Ubuntu'", "'IBM Plex Sans Devanagari'", "sans-serif"],
           }
         }
       }
@@ -31,8 +23,13 @@
   </script>
 
   <style>
+    /* Strict font configuration and no bold styling anywhere */
+    *, *::before, *::after {
+      font-weight: 400 !important;
+    }
+
     body {
-      font-family: 'IBM Plex Sans', 'IBM Plex Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Ubuntu', 'IBM Plex Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
       word-break: keep-all;
       overflow-wrap: break-word;
       transition: background-color 0.3s ease, color 0.3s ease;
@@ -40,14 +37,14 @@
 
     .content-body {
       text-align: justify;
-      hyphens: manual;
+      hyphens: none;
       word-break: keep-all;
       overflow-wrap: break-word;
-      line-height: 1.85;
-      letter-spacing: 0.01em;
+      line-height: 1.9;
+      letter-spacing: 0.012em;
     }
 
-    /* Keyframe Animations for Graphic */
+    /* Orbital and shield animation keyframes */
     @keyframes orbit1 {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -90,13 +87,12 @@
       animation: shieldFloat 5s ease-in-out infinite;
     }
 
-    /* Toast Notification Animation */
-    .toast-enter {
-      animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
     @keyframes toastSlideUp {
       from { transform: translate(-50%, 20px); opacity: 0; }
       to { transform: translate(-50%, 0); opacity: 1; }
+    }
+    .toast-enter {
+      animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
   </style>
 </head>
@@ -104,27 +100,23 @@
 
   <header class="w-full max-w-2xl mx-auto flex justify-end mb-4">
     <button id="themeToggle" type="button" aria-label="Toggle Theme" class="p-2.5 rounded-full bg-white/90 dark:bg-slate-800/90 text-slate-600 dark:text-amber-300 shadow-sm hover:shadow border border-slate-200/80 dark:border-slate-700/80 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400">
-      <!-- Sun Icon -->
-      <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="5"></circle>
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
       </svg>
-      <!-- Moon Icon -->
-      <svg id="moonIcon" class="w-5 h-5 block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg id="moonIcon" class="w-5 h-5 block" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
       </svg>
     </button>
   </header>
 
-  <main class="w-full max-w-[700px] mx-auto bg-white/95 dark:bg-[#111726]/95 backdrop-blur-md rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.4)] border border-slate-100 dark:border-slate-800/90 p-6 sm:p-10 md:p-12 transition-colors duration-300">
+  <main class="w-full max-w-[720px] mx-auto bg-white/95 dark:bg-[#111726]/95 backdrop-blur-md rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.4)] border border-slate-100 dark:border-slate-800/90 p-6 sm:p-10 md:p-14 transition-colors duration-300">
 
-    <!-- Document Title (Centered & Bold) -->
-    <h1 class="text-center font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white tracking-tight mb-8">‘No First Use’</h1>
+    <h1 class="text-center text-3xl sm:text-4xl text-slate-900 dark:text-white tracking-tight mb-8">‘No First Use’</h1>
 
     <div class="flex justify-center items-center my-6 sm:my-8" aria-hidden="true">
       <svg class="w-56 h-56 sm:w-64 sm:h-64" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <!-- Radiant Soft Gradients -->
           <linearGradient id="orbitGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#38bdf8" />
             <stop offset="50%" stop-color="#818cf8" />
@@ -152,65 +144,55 @@
           </linearGradient>
         </defs>
 
-        <!-- Ambient Backdrop Glow -->
         <circle cx="150" cy="150" r="85" fill="url(#centerAura)" />
 
-        <!-- Orbit Ring 1 -->
         <g class="orbit-ring-1">
           <ellipse cx="150" cy="150" rx="100" ry="38" stroke="url(#orbitGrad1)" stroke-width="2.2" stroke-dasharray="3 3 8 4" fill="none" opacity="0.85" />
           <circle cx="250" cy="150" r="4.5" fill="#38bdf8" />
           <circle cx="50" cy="150" r="3" fill="#c084fc" />
         </g>
 
-        <!-- Orbit Ring 2 -->
         <g class="orbit-ring-2">
           <ellipse cx="150" cy="150" rx="100" ry="38" stroke="url(#orbitGrad2)" stroke-width="2.2" fill="none" opacity="0.8" />
           <circle cx="250" cy="150" r="4" fill="#34d399" />
           <circle cx="50" cy="150" r="3.5" fill="#a855f7" />
         </g>
 
-        <!-- Orbit Ring 3 -->
         <g class="orbit-ring-3">
           <ellipse cx="150" cy="150" rx="100" ry="38" stroke="url(#orbitGrad3)" stroke-width="2.2" stroke-dasharray="6 4" fill="none" opacity="0.85" />
           <circle cx="250" cy="150" r="4" fill="#fb7185" />
           <circle cx="50" cy="150" r="3.5" fill="#60a5fa" />
         </g>
 
-        <!-- Center Glowing Nucleus -->
         <circle class="center-core" cx="150" cy="150" r="28" fill="url(#centerAura)" />
 
-        <!-- Balanced Protective Shield & Harmony Motif -->
         <g class="shield-emblem">
-          <!-- Shield contour representing deterrence and restraint -->
           <path d="M150 126 C163 126 172 129 172 138 C172 153 161 166 150 173 C139 166 128 153 128 138 C128 129 137 126 150 126 Z" 
                 fill="url(#shieldGrad)" opacity="0.92" stroke="#ffffff" stroke-width="1.5" />
-          <!-- Inner Olive / Peace Laurel Accent -->
           <path d="M150 134 V164 M143 141 Q148 144 150 148 M157 141 Q152 144 150 148 M142 152 Q148 153 150 157 M158 152 Q152 153 150 157" 
                 stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
         </g>
       </svg>
     </div>
 
-    <div class="content-body text-[17px] sm:text-[19px] md:text-[20px] text-slate-700 dark:text-slate-300 space-y-6">
+    <div class="content-body text-[19px] sm:text-[21px] md:text-[22px] text-slate-700 dark:text-slate-300 space-y-7">
       <p>
-        <em>In nuclear ethics and deterrence doctrine, <strong>No First Use</strong> (NFU) refers to a type of pledge or policy wherein a nuclear power formally refrains from the use of nuclear weapons or other weapons of mass destruction (WMD), except for as a second strike in retaliation to the attack by an enemy power using such weapons.</em>
+        <em>In nuclear ethics and deterrence doctrine, No First Use (NFU) refers to a type of pledge or policy wherein a nuclear power formally refrains from the use of nuclear weapons or other weapons of mass destruction (WMD), except for as a second strike in retaliation to the attack by an enemy power using such weapons.</em>
       </p>
 
-      <!-- Center Divider -->
-      <div class="text-center text-indigo-500 dark:text-indigo-400 select-none tracking-[0.25em] text-xl sm:text-2xl py-2" aria-hidden="true">
+      <div class="text-center text-indigo-500 dark:text-indigo-400 select-none tracking-[0.28em] text-2xl sm:text-3xl py-2" aria-hidden="true">
         ⚛⚛⚛
       </div>
 
       <p>
-        आण्विक किंवा इतर संहारक शस्त्रास्त्रे भात्यात बाळगून असणाऱ्या देशाने <em><strong>No First Use</strong></em> हे धोरण स्वीकारणे हे त्याच्या ताकदीचे, आत्मविश्वासाचे आणि आंतरराष्ट्रीय जबाबदाऱ्यांप्रति असलेल्या दायित्वाचे प्रतीक असते.
+        आण्विक किंवा इतर संहारक शस्त्रास्त्रे भात्यात बाळगून असणाऱ्या देशाने <em>No First Use</em> हे धोरण स्वीकारणे हे त्याच्या ताकदीचे, आत्मविश्वासाचे आणि आंतरराष्ट्रीय जबाबदाऱ्यांप्रति असलेल्या दायित्वाचे प्रतीक असते.
       </p>
 
       <p>
-        <em>“आम्ही प्रथम वापर करणार नाही; परंतु...”</em> या एकाच जाहीर घोषणेमागे दडलेला सुप्त 'धाक'; निर्माण होऊ शकणारे संघर्ष व संभाव्य धोके आपोआपच टाळले जाण्यास कारणीभूत ठरतो.
+        <em>“आम्ही प्रथम वापर करणार नाही; परंतु.. ”</em> या एकाच जाहीर घोषणेमागे दडलेला सुप्त ‘धाक’; निर्माण होऊ शकणारे संघर्ष व संभाव्य धोके आपोआपच टाळले जाण्यास कारणीभूत ठरतो.
       </p>
 
-      <!-- Center Divider -->
-      <div class="text-center text-indigo-500 dark:text-indigo-400 select-none tracking-[0.25em] text-xl sm:text-2xl py-2" aria-hidden="true">
+      <div class="text-center text-indigo-500 dark:text-indigo-400 select-none tracking-[0.28em] text-2xl sm:text-3xl py-2" aria-hidden="true">
         ⚛⚛⚛
       </div>
 
@@ -222,37 +204,34 @@
         हे शक्य तितके टाळण्याचा एक उपाय म्हणून प्रत्येकाने स्वतःच्या भावनिक शस्त्रसाठ्याच्या वापराबाबत ‘नो फर्स्ट यूज’ हे तत्व वापरले तर फायदा होईल असे वाटते.
       </p>
 
-      <!-- Center Divider -->
-      <div class="text-center text-indigo-500 dark:text-indigo-400 select-none tracking-[0.25em] text-xl sm:text-2xl py-2" aria-hidden="true">
+      <div class="text-center text-indigo-500 dark:text-indigo-400 select-none tracking-[0.28em] text-2xl sm:text-3xl py-2" aria-hidden="true">
         ⚛⚛⚛
       </div>
 
       <p>
-        आपले मानसिक स्वास्थ्य, विचार आणि आचरण, म्हणजेच <em>deterrence or retaliating ability</em> इतकी सक्षम असावी की <em>“मी कायमच सभ्यपणे वागेन असे नाही. वेळप्रसंगी माझेकडून समयोचित असभ्यपणा केला जाऊ शकतो, कणखर भूमिका घेतली जाऊ शकते; 'कोडगी' अथवा दुखावणारी वर्तणूकही केली जाऊ शकते”</em> हे सर्वांना आपल्या वागण्या बोलण्यातूनच कळावे. यामुळे समोरच्या व्यक्तीस नात्यातली ‘लक्ष्मण-रेषा’ कोणती हे वेळीच ध्यानात येऊन ती आपल्याला गृहीत धरून वागण्याची शक्यता कमी होण्यास मदत होईल.
+        आपले मानसिक स्वास्थ्य, विचार आणि आचरण, म्हणजेच <em>deterrence or retaliating ability</em> इतकी सक्षम असावी की <em>“मी कायमच सभ्यपणे वागेन असे नाही. वेळप्रसंगी माझेकडून समयोचित असभ्यपणा केला जाऊ शकतो, कणखर भूमिका घेतली जाऊ शकते; 'कोडगी' अथवा दुखावणारी वर्तणूकही केली जाऊ शकते” </em> असा कोणाचाही समज होणार नाही हे सर्वांना आपल्या वागण्या बोलण्यातूनच कळावे. यामुळे समोरच्या व्यक्तीस नात्यातली ‘लक्ष्मण-रेषा’ कोणती हे वेळीच ध्यानात येऊन ती आपल्याला गृहीत धरून वागण्याची शक्यता कमी होण्यास मदत होईल.
       </p>
 
       <p>
-        याने, म्हणजे आपले "प्रथम वापर नाही" धोरण आणि इतरांना आलेली किंवा असलेली, आपल्याकडून वेळप्रसंगी दिल्या जाऊ शकणाऱ्या स्पष्ट आणि कणखर प्रतिक्रियेची पूर्वकल्पना; यामुळे नात्यात कोणत्याही प्रकारच्या ‘कटुते’चा पहिला वापर <em>(first use)</em> शक्यतो होणार नाही. त्यामुळे नात्यांत कडवटपणा येणे आपोआपच टळेल आणि प्रत्येक नातेसंबंध आदरयुक्त व सौहार्दपूर्ण राहण्यास मदत होईल.
+        याने, म्हणजे आपले "प्रथम वापर नाही" धोरण आणि इतरांना आलेली किंवा असलेली, आपल्याकडून वेळप्रसंगी दिल्या जाऊ शकणाऱ्या स्पष्ट आणि कणखर प्रतिक्रियेची पूर्वकल्पना; यामुळे नात्यात कोणत्याही प्रकारच्या ‘कटुते’चा पहिला वापर <em>(first use)</em> शक्यतो होणार नाही. अशाने नात्यांत कडवटपणा येणे आपोआपच टळेल आणि प्रत्येक नातेसंबंध आदरयुक्त व सौहार्दपूर्ण राहण्यास मदत होईल.
       </p>
 
       <p>
         अर्थात हे तत्व <em>mutually</em> म्हणजे दोन्ही बाजूने पाळले गेले तर ते अधिक उत्तम; परंतु तसे नसले तरीही अंतिमतः ते स्वहितासाठी उपयुक्त आहे.
       </p>
 
-      <!-- Center Divider -->
-      <div class="text-center text-indigo-500 dark:text-indigo-400 select-none tracking-[0.25em] text-xl sm:text-2xl py-2" aria-hidden="true">
+      <div class="text-center text-indigo-500 dark:text-indigo-400 select-none tracking-[0.28em] text-2xl sm:text-3xl py-2" aria-hidden="true">
         ⚛⚛⚛
       </div>
 
-      <!-- Center Date & Atom Mark -->
-      <div class="text-center space-y-1 pt-1 text-slate-600 dark:text-slate-400 font-normal text-base sm:text-lg">
-        <div>२०२६१०१०</div>
-        <div class="text-indigo-500 dark:text-indigo-400 text-xl">⚛</div>
+      <div class="text-center space-y-1 pt-1 text-slate-600 dark:text-slate-400 text-lg sm:text-xl">
+        <div>२०२४०४१६</div>
+        <div class="text-indigo-500 dark:text-indigo-400 text-2xl">⚛</div>
       </div>
     </div>
 
-    <div class="mt-10 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-center">
-      <button id="shareButton" type="button" class="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 font-medium text-sm transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900">
+    <div class="mt-12 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-center">
+      <button id="shareButton" type="button" class="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 text-base transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900">
         <svg class="w-4 h-4 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="18" cy="5" r="3"></circle>
           <circle cx="6" cy="12" r="3"></circle>
@@ -266,8 +245,8 @@
   </main>
 
   <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
-    <div class="bg-slate-900/90 text-white dark:bg-white/95 dark:text-slate-900 px-4 py-2.5 rounded-full shadow-lg text-xs sm:text-sm font-medium tracking-wide flex items-center gap-2 backdrop-blur-sm">
-      <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <div class="bg-slate-900/90 text-white dark:bg-white/95 dark:text-slate-900 px-4 py-2.5 rounded-full shadow-lg text-sm tracking-wide flex items-center gap-2 backdrop-blur-sm">
+      <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
       </svg>
       <span id="toastMessage">Link copied to clipboard</span>
@@ -275,7 +254,6 @@
   </div>
 
   <script>
-    // Theme Switch Logic
     const themeToggle = document.getElementById('themeToggle');
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
@@ -295,7 +273,6 @@
       }
     }
 
-    // Default to system preference or light
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyTheme(prefersDark);
 
@@ -304,7 +281,6 @@
       applyTheme(!isCurrentlyDark);
     });
 
-    // Toast handler
     let toastTimeout;
     function showToast(message) {
       const toast = document.getElementById('toast');
@@ -321,7 +297,6 @@
       }, 2500);
     }
 
-    // Share Handler
     const shareButton = document.getElementById('shareButton');
     shareButton.addEventListener('click', async () => {
       const shareData = {
